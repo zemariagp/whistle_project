@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Lazer";
+  src: url("/fonts/Lazer84.ttf")
+       
+}
+
+
+* {
+  font-family: 'Lazer';
+}
