@@ -46,6 +46,8 @@ class Background {
 
   }
 
+
+  
   loadAllObstacles(howMany) {
     let spaceForObstacle = 1000 / (howMany + 1);
 
@@ -56,9 +58,6 @@ class Background {
 
     }
   }
-
-
-
   loadObstacles(x, y, src) {
     let img = new Image();
     img.src = src;

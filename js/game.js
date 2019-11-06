@@ -43,20 +43,18 @@ class Game {
         this.level.obstacles[i].state = "bright";
       }
     }
+    // END OF COLLISIONS
+
+    // WIN LOSE CONDITIONS
     let allObstacles = this.level.obstacles;
-    
     let hitObstacles = this.level.obstacles.filter(obs => {
       return obs.state === "bright";
     })
 
-    // 
-
     if(allObstacles.length > 0 && allObstacles.length === hitObstacles.length) { //win condition
-      // win
+    
       this.winLooseState = "win";}
-      
-
-      //lose condition
+           
     else if (allObstacles.length > 0 && allObstacles.length !== hitObstacles.length && this.spaceShip.position.x>1200) {
       this.winLooseState ="lose";
       console.log(allObstacles);
@@ -67,18 +65,8 @@ class Game {
     
   }
 
-  
-
-
-
-
-
-
-
-
   drawEverything() {
-    // console.log('drawing');
-    // this.level1.draw();
+  
 
     this.context.clearRect(0, 0, 1500, 500);
 
