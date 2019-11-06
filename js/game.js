@@ -38,23 +38,36 @@ class Game {
     for (let i = 0; i < this.level.obstacles.length; i++) {
       let pointB = this.level.obstacles[i];
       let distance = Math.round(Math.sqrt((((pointB.y + 45) - (pointA.y + 35)) ** 2) + (((pointB.x + 45) - (pointA.x + 40)) ** 2)));
-
+      //console.log(distance);
       if (distance <= 100) {
         this.level.obstacles[i].state = "bright";
       }
     }
-    let x = this.level.obstacles.filter(obs => {
+    let allObstacles = this.level.obstacles;
+    
+    let hitObstacles = this.level.obstacles.filter(obs => {
       return obs.state === "bright";
     })
 
-    // if(this.level.obstacles.length > 0 && this.level.obstacles.length === x.length)
+    // 
 
-    if (1 == 1) {
+    if(allObstacles.length > 0 && allObstacles.length === hitObstacles.length) { //win condition
       // win
-      this.winLooseState = "win";
-    }
+      this.winLooseState = "win";}
+      
+
+      //lose condition
+    else if (allObstacles.length > 0 && allObstacles.length !== hitObstacles.length && this.spaceShip.position.x>1200) {
+      this.winLooseState ="lose";
+      console.log(allObstacles);
+      console.log(this.spaceShip.position.x)
+    } 
+      
+      
+    
   }
 
+  
 
 
 
