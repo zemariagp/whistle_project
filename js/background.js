@@ -8,9 +8,8 @@ class Background {
 
     this.backgroundPathArray = ["img/nebula03.png", "img/nebula06.png", "img/nebula07.png"];
     this.loadBackground(0, 0, this.backgroundPathArray[Math.floor(Math.random() * 3)]);
-    // this.loadAllObstacles(Math.floor(Math.random() * 6) + 1);
+    this.loadAllObstacles(Math.floor(Math.random() * 6) + 1);
 
-    this.loadAllObstacles(1);
 
 
     this.winImg = new Image();
@@ -100,7 +99,7 @@ class Background {
 
     this.obstacles.forEach(obs => {
 
-      obs.x--;
+      obs.y++;
     });
     //this.game.context.filter = 'hue-rotate(45deg)';
     //this.game.context.drawImage(this.winImg, 300, 300, 400, 400);
@@ -108,9 +107,16 @@ class Background {
     this.game.context.font = '200px Lazer';
     this.game.context.lineWidth = 8;
     this.game.context.textAlign = "center";
-
-    this.game.context.fillText('YOU WIN', 650, 300);
     this.game.context.strokeText('YOU WIN', 650, 300);
+    this.game.context.fillText('YOU WIN', 650, 300);
+    straightLine = 2700;
+    time = 10;
+    let score = (this.game.spaceShip.positionLog.length - straightLine + (time / this.obstacles.length)) ** (-1) // TODO IMPLEMENT STRAIGHNESS SCORE
+
+    this.game.context.font = '50px Lazer, serif';
+    this.game.context.textAlign = "center";
+    this.game.context.strokeText("Score " + score, 650, 400);
+    this.game.context.fillText("Score " + score, 650, 400);
     this.playSong();
 
   }
@@ -122,7 +128,7 @@ class Background {
 
     this.obstacles.forEach(obs => {
 
-      obs.x++;
+      obs.y++;
     });
     //this.game.context.filter = 'hue-rotate(45deg)';
     //this.game.context.drawImage(this.winImg, 300, 300, 400, 400);
@@ -143,5 +149,17 @@ class Background {
       this.songBeingPlayed = true;
     }
   }
+
+  moveBackground() {
+    if (this.background[0] != undefined) {
+      console.log("ya", this.background[0].x);
+      if (this.background[0].x < 20) {
+        this.background[0].x++;
+      } else if (this.background[0].x > 0) {
+        this.background[0].x--;
+      }
+    }
+  }
+
 
 }

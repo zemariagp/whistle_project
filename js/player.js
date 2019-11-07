@@ -45,7 +45,7 @@ class Player {
 
       const pitch = this.normalizePitch(this.game.pitch);
 
-      const absolutePitch = pitch * height;
+      const absolutePitch = height - (pitch * height);
 
 
 
@@ -58,6 +58,12 @@ class Player {
 
         this.position.x++;
 
+        let newPosition = {
+          x: this.position.x,
+          y: this.position.y
+        };
+        this.positionLog.push(newPosition);
+
       } else if (this.position.y > absolutePitch) {
         if (this.wasGoingUP === true) {
           this.velY = 0;
@@ -68,20 +74,18 @@ class Player {
 
         this.velY += 0.1;
 
-
         this.position.x++;
-
+        let newPosition = {
+          x: this.position.x,
+          y: this.position.y
+        };
+        this.positionLog.push(newPosition);
 
         //this.position.y -= this.velY;
         //this.velY++;
 
       }
 
-      let newPosition = {
-        x: this.position.x,
-        y: this.position.y
-      };
-      this.positionLog.push(newPosition);
 
     }
 
