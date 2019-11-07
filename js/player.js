@@ -9,8 +9,12 @@ class Player {
       x: 100,
       y: 80
     };
-    this.ACCELERATION = 1;
-    this.velocityY = 1;
+    this.acc = 0.1;
+    this.wasGoingUP = true;
+    this.wasMovingFWD = false;
+    this.velX = 0;
+    this.velY = 0;
+
     this.positionLog = [{
       x: 0,
       y: 0
@@ -41,26 +45,38 @@ class Player {
 
       const pitch = this.normalizePitch(this.game.pitch);
 
-
       const absolutePitch = pitch * height;
 
 
 
-      if (this.position.y < absolutePitch) {
-        let delta = absolutePitch - this.position.y;
 
-        this.position.y += Math.floor(delta * 0.4);
-        this.position.x += 4;
-        // this.velocityY += this.ACCELERATION;
+      if (this.position.y < absolutePitch) {
+        this.position.y += this.velY;
+        this.position.y = Math.round(this.position.y);
+        this.velY += 0.1;
+        this.wasGoingUP = true;
+
+        this.position.x++;
 
       } else if (this.position.y > absolutePitch) {
-        let delta = this.position.y - absolutePitch;
+        if (this.wasGoingUP === true) {
+          this.velY = 0;
+          this.wasGoingUP = false;
+        }
+        this.position.y -= this.velY;
+        this.position.y = Math.round(this.position.y);
 
-        this.position.y -= Math.floor(delta * 0.4);
-        this.position.x += 4;
-        // this.velocityY -= this.ACCELERATION;
+        this.velY += 0.1;
+
+
+        this.position.x++;
+
+
+        //this.position.y -= this.velY;
+        //this.velY++;
 
       }
+
       let newPosition = {
         x: this.position.x,
         y: this.position.y
@@ -75,7 +91,7 @@ class Player {
 
   draw() {
     const height = this.game.context.canvas.height;
-    this.game.context.drawImage(this.playerImg, this.position.x, height - this.position.y, this.size.x, this.size.y);
+    this.game.context.drawImage(this.playerImg, this.position.x, this.position.y, this.size.x, this.size.y);
   }
 
   loadPlayerImage(src) {

@@ -117,6 +117,7 @@ function togglePlayback() {
 }
 
 function go() {
+  document.getElementById("instructions").setAttribute("hidden", "true");
   toggleOscillator();
   toggleOscillator();
   toggleLiveInput();

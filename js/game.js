@@ -34,12 +34,20 @@ class Game {
     };
 
     // COLLISIONS
-    pointA = this.spaceShip.positionLog[this.spaceShip.positionLog.length - 1];
+    pointA = this.spaceShip.position;
     for (let i = 0; i < this.level.obstacles.length; i++) {
       let pointB = this.level.obstacles[i];
-      let distance = Math.round(Math.sqrt((((pointB.y + 45) - (pointA.y + 35)) ** 2) + (((pointB.x + 45) - (pointA.x + 40)) ** 2)));
-      //console.log(distance);
-      if (distance <= 100) {
+      console.log("A ", pointA);
+      console.log("B ", pointB);
+      let one = (pointB.y) - (pointA.y);
+      let two = (pointB.x) - (pointA.x);
+
+      let distance = Math.sqrt(one * one + two * two);
+
+
+
+      console.log(distance);
+      if (distance <= 45) {
         this.level.obstacles[i].state = "bright";
       }
     }
@@ -51,22 +59,21 @@ class Game {
       return obs.state === "bright";
     })
 
-    if(allObstacles.length > 0 && allObstacles.length === hitObstacles.length) { //win condition
-    
-      this.winLooseState = "win";}
-           
-    else if (allObstacles.length > 0 && allObstacles.length !== hitObstacles.length && this.spaceShip.position.x>1200) {
-      this.winLooseState ="lose";
+    if (allObstacles.length > 0 && allObstacles.length === hitObstacles.length) { //win condition
+
+      this.winLooseState = "win";
+    } else if (allObstacles.length > 0 && allObstacles.length !== hitObstacles.length && this.spaceShip.position.x > 1200) {
+      this.winLooseState = "lose";
       console.log(allObstacles);
       console.log(this.spaceShip.position.x)
-    } 
-      
-      
-    
+    }
+
+
+
   }
 
   drawEverything() {
-  
+
 
     this.context.clearRect(0, 0, 1500, 500);
 

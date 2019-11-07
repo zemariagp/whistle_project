@@ -8,7 +8,10 @@ class Background {
 
     this.backgroundPathArray = ["img/nebula03.png", "img/nebula06.png", "img/nebula07.png"];
     this.loadBackground(0, 0, this.backgroundPathArray[Math.floor(Math.random() * 3)]);
-    this.loadAllObstacles(Math.floor(Math.random() * 6) + 1);
+    // this.loadAllObstacles(Math.floor(Math.random() * 6) + 1);
+
+    this.loadAllObstacles(1);
+
 
     this.winImg = new Image();
     this.winImg.src = "img/winwin.png";
@@ -47,7 +50,7 @@ class Background {
   }
 
 
-  
+
   loadAllObstacles(howMany) {
     let spaceForObstacle = 1000 / (howMany + 1);
 
@@ -93,7 +96,7 @@ class Background {
 
   drawWin() {
     this.draw();
-    
+
 
     this.obstacles.forEach(obs => {
 
@@ -104,9 +107,10 @@ class Background {
     this.game.context.fillStyle = "yellow";
     this.game.context.font = '200px Lazer';
     this.game.context.lineWidth = 8;
+    this.game.context.textAlign = "center";
 
-    this.game.context.fillText('YOU WIN', 200, 300);
-    this.game.context.strokeText('YOU WIN', 200, 300);
+    this.game.context.fillText('YOU WIN', 650, 300);
+    this.game.context.strokeText('YOU WIN', 650, 300);
     this.playSong();
 
   }
@@ -114,7 +118,7 @@ class Background {
   drawLose() {
 
     this.draw();
-    
+
 
     this.obstacles.forEach(obs => {
 
@@ -122,12 +126,12 @@ class Background {
     });
     //this.game.context.filter = 'hue-rotate(45deg)';
     //this.game.context.drawImage(this.winImg, 300, 300, 400, 400);
-    this.game.context.fillStyle = "gray";
+    this.game.context.fillStyle = "white";
     this.game.context.font = '200px Lazer';
-    this.game.context.lineWidth = 8;
-
-    this.game.context.strokeText('TRY AGAIN', 0, 0);
-    this.game.context.fillText('TRY AGAIN', 0, 0);
+    this.game.context.lineWidth = 5;
+    this.game.context.textAlign = "center";
+    this.game.context.strokeText('TRY AGAIN', 650, 300);
+    this.game.context.fillText('TRY AGAIN', 650, 300);
     //this.playSong();
 
   }
@@ -135,7 +139,7 @@ class Background {
   playSong() {
     if (!this.songBeingPlayed) {
       this.winSong.play()
-      
+
       this.songBeingPlayed = true;
     }
   }
