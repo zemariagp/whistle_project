@@ -109,8 +109,8 @@ class Background {
     this.game.context.textAlign = "center";
     this.game.context.strokeText('YOU WIN', 650, 300);
     this.game.context.fillText('YOU WIN', 650, 300);
-    straightLine = 2700;
-    time = 10;
+    let straightLine = 2700;
+    let time = 10;
     let score = (this.game.spaceShip.positionLog.length - straightLine + (time / this.obstacles.length)) ** (-1) // TODO IMPLEMENT STRAIGHNESS SCORE
 
     this.game.context.font = '50px Lazer, serif';
@@ -118,6 +118,7 @@ class Background {
     this.game.context.strokeText("Score " + score, 650, 400);
     this.game.context.fillText("Score " + score, 650, 400);
     this.playSong();
+
 
   }
 
@@ -138,7 +139,6 @@ class Background {
     this.game.context.textAlign = "center";
     this.game.context.strokeText('TRY AGAIN', 650, 300);
     this.game.context.fillText('TRY AGAIN', 650, 300);
-    //this.playSong();
 
   }
 

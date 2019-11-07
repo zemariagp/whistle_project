@@ -1,4 +1,7 @@
 class Game {
+
+
+
   constructor(context, {
     getCurrentPitch
   }) {
@@ -85,12 +88,28 @@ class Game {
       this.spaceShip.draw();
     } else if (this.winLooseState === "win") {
       this.level.drawWin();
+
     } else if (this.winLooseState === "lose") {
       this.level.drawLose();
+
     }
 
 
 
 
+  }
+
+  restart() {
+
+
+
+    this.spaceShip = null;
+    this.spaceShip = new Player(this);
+    this.level = null;
+    this.level = new Background(this, 1);
+
+
+    this.winLooseState = "playing";
+    this.loop();
   }
 }
