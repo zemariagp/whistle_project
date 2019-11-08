@@ -1,19 +1,19 @@
 class Background {
   constructor(game, level) {
     this.game = game;
-    this.level = level;
+    // this.level = level;
 
     this.obstacles = [];
     this.background = [];
 
     this.backgroundPathArray = ["img/nebula03.png", "img/nebula06.png", "img/nebula07.png"];
     this.loadBackground(0, 0, this.backgroundPathArray[Math.floor(Math.random() * 3)]);
-    this.loadAllObstacles(Math.floor(Math.random() * 6) + 1);
+    this.loadAllObstacles(this.game.numberOfPlanets);
 
 
 
-    this.winImg = new Image();
-    this.winImg.src = "img/winwin.png";
+
+
     this.winSong = new Audio("/music/win.mp3");
     this.songBeingPlayed = false;
 
@@ -32,7 +32,7 @@ class Background {
       this.game.context.save();
 
       if (obs.state === "dark") {
-        this.game.context.filter = "brightness(30%)";
+        this.game.context.filter = "brightness(40%)";
       } else if (obs.state === "bright") {
         this.game.context.filter = "brightness(100%)";
         this.game.context.shadowColor = "#ffd900";
@@ -117,7 +117,15 @@ class Background {
     this.game.context.textAlign = "center";
     this.game.context.strokeText("Score " + score, 650, 400);
     this.game.context.fillText("Score " + score, 650, 400);
+
     this.playSong();
+
+    if (this.obstacles[0].y > 800) {
+      this.winSong.pause();
+      this.winSong.currentTime = 0;
+      this.songBeingPlayed = false;
+      this.game.asd();
+    }
 
 
   }
@@ -140,6 +148,9 @@ class Background {
     this.game.context.strokeText('TRY AGAIN', 650, 300);
     this.game.context.fillText('TRY AGAIN', 650, 300);
 
+    if (this.obstacles[0].y > 600) {
+      this.game.asd();
+    }
   }
 
   playSong() {

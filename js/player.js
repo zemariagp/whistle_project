@@ -56,7 +56,7 @@ class Player {
         this.velY += 0.1;
         this.wasGoingUP = true;
 
-        this.position.x++;
+        this.position.x += 5;
 
         let newPosition = {
           x: this.position.x,
@@ -74,7 +74,7 @@ class Player {
 
         this.velY += 0.1;
 
-        this.position.x++;
+        this.position.x += 5;
         let newPosition = {
           x: this.position.x,
           y: this.position.y

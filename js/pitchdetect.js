@@ -121,6 +121,7 @@ function go() {
   toggleOscillator();
   toggleOscillator();
   toggleLiveInput();
+
 }
 
 var rafID = null;

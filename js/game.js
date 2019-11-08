@@ -4,12 +4,13 @@ class Game {
 
   constructor(context, {
     getCurrentPitch
-  }) {
+  }, noOfPlan) {
     this.context = context;
     this.getCurrentPitch = getCurrentPitch;
     this.pitch;
     this.spaceShip = new Player(this);
-    this.level = new Background(this, 1);
+    this.numberOfPlanets = noOfPlan;
+    this.level = new Background(this, this.numberOfPlanets);
 
 
     this.winLooseState = "playing";
@@ -32,7 +33,6 @@ class Game {
 
   updateEverything() {
     this.spaceShip.move();
-    console.log(this.spaceShip.positionLog.length);
 
     let pointA = {
       x: 0,
@@ -99,17 +99,16 @@ class Game {
 
   }
 
-  restart() {
+  asd() {
 
 
 
-    this.spaceShip = null;
+
     this.spaceShip = new Player(this);
-    this.level = null;
-    this.level = new Background(this, 1);
+
+    this.level = new Background(this, this.numberOfPlanets);
 
 
     this.winLooseState = "playing";
-    this.loop();
   }
 }
