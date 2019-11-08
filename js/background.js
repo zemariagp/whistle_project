@@ -5,6 +5,8 @@ class Background {
 
     this.obstacles = [];
     this.background = [];
+    this.finalScore = [];
+    this.distanceTraveled = []
 
     this.backgroundPathArray = ["img/nebula03.png", "img/nebula06.png", "img/nebula07.png"];
     this.loadBackground(0, 0, this.backgroundPathArray[Math.floor(Math.random() * 3)]);
@@ -108,14 +110,18 @@ class Background {
     this.game.context.textAlign = "center";
     this.game.context.strokeText('YOU WIN', 650, 300);
     this.game.context.fillText('YOU WIN', 650, 300);
-    let straightLine = 2700;
-    let time = 10;
-    let score = (this.game.spaceShip.positionLog.length - straightLine + (time / this.obstacles.length)) ** (-1) // TODO IMPLEMENT STRAIGHNESS SCORE
 
     this.game.context.font = '50px Lazer, serif';
     this.game.context.textAlign = "center";
-    this.game.context.strokeText("Score " + score, 650, 400);
-    this.game.context.fillText("Score " + score, 650, 400);
+
+
+
+    this.distanceTraveled.push(this.game.spaceShip.positionLog.length);
+    this.distanceTraveled >= 1 ? this.distanceTraveled.slice(0, 1) : console.log(this.distanceTraveled);
+    this.finalScore.push(this.game.score);
+    this.finalScore.length >= 1 ? this.finalScore.slice(0, 1) : console.log(this.finalScore);
+    console.log(this.game.spaceShip.positionLog.length);
+    this.game.context.fillText("Score " + Math.floor(1000 * ((Math.floor(this.finalScore[0]) - this.distanceTraveled[0]) ** (-1))), 650, 400);
 
     this.playSong();
     if (this.obstacles[0].y > 600) {

@@ -39,7 +39,6 @@ class Player {
   move() {
 
     this.position.x += this.game.playerSpeed;
-
     if (this.normalizePitch(this.game.pitch) !== -1) {
 
 
@@ -60,11 +59,7 @@ class Player {
 
         // this.position.x += 5;
 
-        let newPosition = {
-          x: this.position.x,
-          y: this.position.y
-        };
-        this.positionLog.push(newPosition);
+
 
       } else if (this.position.y > absolutePitch) {
         if (this.wasGoingUP === true) {
@@ -78,11 +73,6 @@ class Player {
 
         // this.position.x += 5;
 
-        let newPosition = {
-          x: this.position.x,
-          y: this.position.y
-        };
-        this.positionLog.push(newPosition);
 
         //this.position.y -= this.velY;
         //this.velY++;
@@ -91,7 +81,11 @@ class Player {
 
 
     }
-
+    let newPosition = {
+      x: this.position.x,
+      y: this.position.y
+    };
+    this.positionLog.push(newPosition);
 
 
   }

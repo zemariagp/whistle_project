@@ -14,7 +14,8 @@ var detectorElem,
   detuneAmount;
 
 window.addEventListener('load', () => {
-  audioContext = new AudioContext();
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioContext = new window.AudioContext();
   MAX_SIZE = Math.max(4, Math.floor(audioContext.sampleRate / 5000)); // corresponds to a 5kHz signal
 });
 
@@ -24,6 +25,12 @@ function error() {
 
 function getUserMedia(dictionary, callback) {
   try {
+    navigator.getUserMedia = (
+      navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia
+    );
     navigator.getUserMedia(dictionary, callback, error);
   } catch (e) {
     alert('getUserMedia threw exception :' + e);
@@ -190,7 +197,7 @@ function autoCorrelate(buf, sampleRate) {
 }
 
 function updatePitch() {
-  if (!analyser) return -1;
+  if (!analyser || !analyser.getFloatTimeDomainData) return -1;
   analyser.getFloatTimeDomainData(buf);
   const pitch = autoCorrelate(buf, audioContext.sampleRate);
   return pitch;

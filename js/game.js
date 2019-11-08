@@ -87,6 +87,7 @@ class Game {
       this.level.draw();
       this.spaceShip.draw();
     } else if (this.winLooseState === "win") {
+      this.score = this.calculateScore();
       this.level.drawWin();
 
     } else if (this.winLooseState === "lose") {
@@ -115,5 +116,37 @@ class Game {
 
 
     this.winLooseState = "playing";
+  }
+
+  calculateScore() {
+    let calcSc = 0;
+    let pointsToVisit = [{
+      x: 0,
+      y: 300
+    }].concat(this.level.obstacles);
+    console.log(pointsToVisit);
+
+    for (let i = 0; i < pointsToVisit.length - 1; i++) {
+      let pointA = pointsToVisit[i];
+      let pointB = pointsToVisit[i + 1]
+
+      let one = (pointB.y) - (pointA.y);
+      let two = (pointB.x) - (pointA.x);
+
+      let parcialDistance = Math.sqrt(one * one + two * two);
+      calcSc += parcialDistance;
+
+    };
+
+    // pointsToVisit.reduce((acc, v, i, arr) => {
+
+    //   let one = !arr[i + 1] ? arr[i].y : arr[i + 1].y - v.y
+    //   let two = !arr[i + 1] ? arr[i].x : arr[i + 1].x - v.x
+    //   acc += Math.sqrt(one * one + two * two);
+    //   return calcSc = acc
+    // }, 0)
+    console.log(calcSc)
+    return calcSc;
+
   }
 }
