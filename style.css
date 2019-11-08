@@ -55,7 +55,7 @@ h3 {
 }
 
 button {
-  display: inline-block;
+  display: inline;
   border: none;
   padding: 1rem 2rem;
   margin: 0;
@@ -85,3 +85,26 @@ button:focus {
 button:active {
   transform: scale(0.99);
 }
+
+#inputs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form {
+  border-width: 0px;
+  display: inline-block;
+  height: 30px;
+  
+}
+input {
+  size:3rem;
+  border-width: 0px;
+
+  background-color: black;
+  color: yellow;
+  height: 40px;
+  font-size: 2em;
+}
+
+#planTag {display: flex}
