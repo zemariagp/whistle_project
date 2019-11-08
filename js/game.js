@@ -11,7 +11,7 @@ class Game {
     this.spaceShip = new Player(this);
     this.numberOfPlanets = noOfPlan;
     this.level = new Background(this, this.numberOfPlanets);
-
+    this.playerSpeed = 1;
 
     this.winLooseState = "playing";
     this.loop();
@@ -100,6 +100,11 @@ class Game {
   }
 
   asd() {
+
+    if (this.winLooseState === "win") {
+      this.playerSpeed++;
+      this.numberOfPlanets++;
+    }
 
 
 

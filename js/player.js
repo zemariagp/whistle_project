@@ -38,6 +38,8 @@ class Player {
 
   move() {
 
+    this.position.x += this.game.playerSpeed;
+
     if (this.normalizePitch(this.game.pitch) !== -1) {
 
 
@@ -56,7 +58,7 @@ class Player {
         this.velY += 0.1;
         this.wasGoingUP = true;
 
-        this.position.x += 5;
+        // this.position.x += 5;
 
         let newPosition = {
           x: this.position.x,
@@ -74,7 +76,8 @@ class Player {
 
         this.velY += 0.1;
 
-        this.position.x += 5;
+        // this.position.x += 5;
+
         let newPosition = {
           x: this.position.x,
           y: this.position.y

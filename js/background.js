@@ -1,5 +1,5 @@
 class Background {
-  constructor(game, level) {
+  constructor(game, numObs) {
     this.game = game;
     // this.level = level;
 
@@ -8,8 +8,7 @@ class Background {
 
     this.backgroundPathArray = ["img/nebula03.png", "img/nebula06.png", "img/nebula07.png"];
     this.loadBackground(0, 0, this.backgroundPathArray[Math.floor(Math.random() * 3)]);
-    this.loadAllObstacles(this.game.numberOfPlanets);
-
+    this.loadAllObstacles(numObs);
 
 
 
@@ -119,8 +118,7 @@ class Background {
     this.game.context.fillText("Score " + score, 650, 400);
 
     this.playSong();
-
-    if (this.obstacles[0].y > 800) {
+    if (this.obstacles[0].y > 600) {
       this.winSong.pause();
       this.winSong.currentTime = 0;
       this.songBeingPlayed = false;
@@ -148,7 +146,7 @@ class Background {
     this.game.context.strokeText('TRY AGAIN', 650, 300);
     this.game.context.fillText('TRY AGAIN', 650, 300);
 
-    if (this.obstacles[0].y > 600) {
+    if (this.obstacles[0].y > 400) {
       this.game.asd();
     }
   }
@@ -161,16 +159,7 @@ class Background {
     }
   }
 
-  moveBackground() {
-    if (this.background[0] != undefined) {
-      console.log("ya", this.background[0].x);
-      if (this.background[0].x < 20) {
-        this.background[0].x++;
-      } else if (this.background[0].x > 0) {
-        this.background[0].x--;
-      }
-    }
-  }
+
 
 
 }
