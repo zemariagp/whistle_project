@@ -100,7 +100,7 @@ form {
 input {
   size:3rem;
   border-width: 0px;
-
+padding-top: 6px;
   background-color: black;
   color: yellow;
   height: 40px;
