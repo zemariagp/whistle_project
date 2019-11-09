@@ -49,9 +49,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+ 
 }
 
 button {
